@@ -3,15 +3,13 @@ import gspread
 from google.oauth2.service_account import Credentials
 import pandas as pd
 import uuid
-import requests
 
+# Access credentials from secrets
+credentials_info = st.secrets["GOOGLE_CREDENTIALS"]
 
-url = "https://github.com/XXOriginalXX/Events-A.U.R.A/blob/main/credentials.json"
-response = requests.get(url)
-credentials_info = response.json()
 # Google Sheets Authentication
 scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
-creds = Credentials.from_service_account_file("credentials.json", scopes=scope)
+creds = Credentials.from_service_account_info(eval(credentials_info), scopes=scope)
 client = gspread.authorize(creds)
 sheet = client.open("Events").sheet1
 
@@ -58,11 +56,6 @@ def display_events():
         st.write(f"📅 **Date:** {event['Date']}")
         st.write(f"⏰ **Time:** {event['Time']}")
         st.write(f"📝 **Type:** {event['Type'].capitalize()}")
-
-        if event["Registration Link"]:
-            st.markdown(f"[Register Here]({event['Registration Link']})", unsafe_allow_html=True)
-
-        st.write("---")
 
 # Main App Logic
 if "logged_in" not in st.session_state:
