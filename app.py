@@ -4,7 +4,7 @@ from google.oauth2.service_account import Credentials
 import pandas as pd
 import uuid
 
-url = "https://raw.githubusercontent.com/username/repository/branch/credentials.json"
+url = "https://github.com/XXOriginalXX/Events-A.U.R.A/blob/main/credentials.json"
 response = requests.get(url)
 credentials_info = response.json()
 # Google Sheets Authentication
