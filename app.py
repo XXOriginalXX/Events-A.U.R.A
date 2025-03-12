@@ -4,9 +4,9 @@ from google.oauth2.service_account import Credentials
 import pandas as pd
 import uuid
 
-# Set page config
-st.set_page_config(page_title="College Events", page_icon="📅", layout="wide")
-
+url = "https://raw.githubusercontent.com/username/repository/branch/credentials.json"
+response = requests.get(url)
+credentials_info = response.json()
 # Google Sheets Authentication
 scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
 creds = Credentials.from_service_account_file("credentials.json", scopes=scope)
