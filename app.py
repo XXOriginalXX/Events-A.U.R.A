@@ -3,6 +3,8 @@ import gspread
 from google.oauth2.service_account import Credentials
 import pandas as pd
 import uuid
+import requests
+
 
 url = "https://github.com/XXOriginalXX/Events-A.U.R.A/blob/main/credentials.json"
 response = requests.get(url)
